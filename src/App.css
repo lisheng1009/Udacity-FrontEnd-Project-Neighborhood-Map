@@ -31,3 +31,74 @@
     transform: rotate(360deg);
   }
 }
+
+.head{
+  height: 50px;
+  width: 100%;
+  background-color: yellow
+}
+
+.hider{
+  margin-left: 0px;
+}
+
+.searchContainer{
+  text-align: left;
+	color: #cccccc;
+  width: 350px;
+  /* padding: 0px; */
+  position: fixed;
+  background-color: black;
+  height: 1000px;
+}
+
+.searchContainer.hidden{
+  display: none;
+}
+
+.location {
+  /* margin-bottom: 1em; */
+  outline: none;
+  background-color:rgba(12, 11, 11, 0.767);
+  /* border-color: #1860A6; */
+  color: white;
+  font-size: 1em;
+  text-align: left;
+}
+.location-list li {
+  list-style: none;
+}
+
+.location.selected {
+  color: yellow;
+}
+
+.mapContainer{
+  position: absolute;
+	height: 100%;
+	bottom: 0px;
+	left: 350px;
+  right: 0px;
+  top:50px;
+}
+
+.mapContainer.full{
+  position: absolute;
+	height: 100%;
+	bottom: 0px;
+	left: 0px;
+  right: 0px;
+  top:50px;
+}
+
+.filter{
+  left: 200px;
+}
+
+/* .searchContainer{
+  height: 1000px;
+  width: 300px;
+  background-color: #fbff00;
+  z-index: 1001;
+} */
+
