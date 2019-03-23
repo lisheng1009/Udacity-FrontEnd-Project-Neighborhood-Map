@@ -21,10 +21,10 @@ class App extends Component {
     fetch('https://api.foursquare.com/v2/venues/explore?client_id=VWU4EEBHDN4RV1PS5MKGS3JCX0WYR2UWTVDYNU34PEB4WDLN&client_secret=HORQIXTRK34SLXT1EKPNHHXKK2GAUFLI22ILYRJLD4WLVPEK&v=20180323&limit=20&ll=40.7243,-74.0018&query=coffee')
     .then((response)=> {
         // Code for handling API response
-        console.log(response.json())
-        this.setState({
-          locationsFromFourSquare : response.response.groups[0].items
-        })
+        // console.log(response.json())
+        // this.setState({
+        //   locationsFromFourSquare : response.response.groups[0].items
+        // })
     })
     .catch(function(error) {
         // Code for handling errors
