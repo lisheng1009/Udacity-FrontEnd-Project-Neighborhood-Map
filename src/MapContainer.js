@@ -71,7 +71,8 @@ export class MapContainer extends Component {
   render() {
 
     console.log(this.state.activeMarker)
-    console.log(this.props.selectedLocation, "------", this.props.locations)
+    console.log(this.props.showInfoWindow)
+    // console.log(this.props.selectedLocation, "------", this.props.locations)
 
     return (
       <Map
@@ -83,26 +84,31 @@ export class MapContainer extends Component {
         }}
       >
         {this.props.locations.map(location => (
-          this.props.selectedLocation === location ? 
-          <Marker
-            key={location.title}
-            name={location.title}
-            position={location.location}
-            onClick={this.setActiveMarker}
-            animation={this.props.google.maps.Animation.BOUNCE}
-          /> : 
-          <Marker
-            key={location.title}
-            name={location.title}
-            position={location.location}
-            onClick={this.setActiveMarker}
-          />
+          this.props.selectedLocation === location ?
+            <Marker
+              key={location.title}
+              name={location.title}
+              position={location.location}
+              onClick={this.setActiveMarker}
+              animation={this.props.google.maps.Animation.BOUNCE}
+            /> :
+            <Marker
+              key={location.title}
+              name={location.title}
+              position={location.location}
+              onClick={this.setActiveMarker}
+            />
         ))}
 
         <InfoWindow
           marker={this.state.activeMarker}
-        // visible={this.props.showInfoWindow}
-        />
+          visible={this.props.showInfoWindow}
+        >
+          <div>
+            <h3>ddddddddddddddd</h3>
+          </div>
+
+        </InfoWindow>
 
       </Map>
     );

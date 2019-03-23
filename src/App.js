@@ -72,7 +72,7 @@ class App extends Component {
 
 
   render() {
-    // console.log(this.state.showList)
+    console.log(this.state.showInfoWindow)
     console.log(this.state.locationsFromFourSquare)
     return (
       <div className="App">
