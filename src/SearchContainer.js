@@ -22,7 +22,7 @@ class SearchContainer extends Component {
                 <ul className="location-list">
                     {locationsFromFourSquare.map((location) => (
                         <li key={location.venue.id} >
-                            <button className= { (location.location  ===  selectedLocation.location) ? "location selected" : "location" }  
+                            <button className= { (location  ===  selectedLocation) ? "location selected" : "location" }  
                             onClick={() => onLocationSelected(location)}>{location.venue.name}</button>
                         </li>
                     ))}

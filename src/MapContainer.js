@@ -53,7 +53,7 @@ export class MapContainer extends Component {
 
   //选中某location
   selectOneLocation(location) {
-    console.log(location.selectedLocation)
+    // console.log(location.selectedLocation)
     // Map.map.panTo({
     //   lat: 41.7413549,
     //   lng: -72.9980244
@@ -70,40 +70,38 @@ export class MapContainer extends Component {
 
   render() {
 
-    console.log(this.state.activeMarker)
-    console.log(this.props.selectedLocation, "------", this.props.locations)
-    // console.log(this.locationsFromFourSquare)
+    console.log(this.props.selectedLocation)
+    // console.log(this.props.selectedLocation, "------", this.props.locations)
+    // console.log(this.props.locationsFromFourSquare)
     // console.log(this.locationsFromFourSquare.length)
 
     return (
       <Map
         google={this.props.google}
-        zoom={12}
+        zoom={16}
         initialCenter={{
-          lat: 40.7413549,
-          lng: -73.9980244
+          lat: 40.7243,
+          lng: -74.0018
         }}
       >
-        {this.props.locations.map(location => (
+        {this.props.locationsFromFourSquare.map(location => (
           this.props.selectedLocation === location ?
             <Marker
-              key={location.title}
-              title={location.title}
-              name={location.title}
-              position={location.location}
+              key={location.referralId}
+              title={location.venue.name}
+              position={{ lat: location.venue.location.lat, lng: location.venue.location.lng }}
               onClick={this.setActiveMarker}
               animation={this.props.google.maps.Animation.BOUNCE}
             /> :
             <Marker
               key={location.title}
               title={location.title}
-              name={location.title}
-              position={location.location}
+              position={{ lat: location.venue.location.lat, lng: location.venue.location.lng }}
               onClick={this.setActiveMarker}
             />
         ))}
-
-        {/* <InfoWindow
+{/* 
+        <InfoWindow
           marker={this.state.activeMarker}
           visible={this.props.showInfoWindow}>
           <div>
