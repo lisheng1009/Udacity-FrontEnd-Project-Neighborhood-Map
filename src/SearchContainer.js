@@ -5,7 +5,7 @@ class SearchContainer extends Component {
 
     render() {
         console.log(this.props.selectedLocation)
-        const { locations, selectedLocation, updateKeyWord, onLocationSelected } = this.props
+        const { locations, selectedLocation, updateKeyWord, onLocationSelected,locationsFromFourSquare } = this.props
 
         return (
             <div>
@@ -20,10 +20,10 @@ class SearchContainer extends Component {
                     />
                 </div>
                 <ul className="location-list">
-                    {locations.map((location) => (
-                        <li key={location.title} >
+                    {locationsFromFourSquare.map((location) => (
+                        <li key={location.venue.id} >
                             <button className= { (location.location  ===  selectedLocation.location) ? "location selected" : "location" }  
-                            onClick={() => onLocationSelected(location)}>{location.title}</button>
+                            onClick={() => onLocationSelected(location)}>{location.venue.name}</button>
                         </li>
                     ))}
                 </ul>

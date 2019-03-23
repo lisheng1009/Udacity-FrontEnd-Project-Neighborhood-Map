@@ -14,27 +14,28 @@ class App extends Component {
     selectedLocation: {},
     showInfoWindow: false,
     showList: true,
-    locationsFromFourSquare:[]
+    locationsFromFourSquare: []
   }
 
   componentDidMount() {
-    fetch('https://api.foursquare.com/v2/venues/explore?client_id=VWU4EEBHDN4RV1PS5MKGS3JCX0WYR2UWTVDYNU34PEB4WDLN&client_secret=HORQIXTRK34SLXT1EKPNHHXKK2GAUFLI22ILYRJLD4WLVPEK&v=20180323&limit=20&ll=40.7243,-74.0018&query=coffee')
-    .then((response)=> {
-        // Code for handling API response
-        // console.log(response.json())
-        // this.setState({
-        //   locationsFromFourSquare : response.response.groups[0].items
-        // })
-    })
-    .catch(function(error) {
-        // Code for handling errors
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=VWU4EEBHDN4RV1PS5MKGS3JCX0WYR2UWTVDYNU34PEB4WDLN&client_secret=HORQIXTRK34SLXT1EKPNHHXKK2GAUFLI22ILYRJLD4WLVPEK&v=20180323&limit=15&ll=40.7243,-74.0018')
+      .then((response) => {
+        return response.json()
+      }).then((this.initialLoctaions))
+      .catch(function (error) {
         console.log(error)
         alert("糟糕, 没有正确加载地址API!")
-    });
+      });
 
-
+    //先用的假数据
     this.setState({ locations: locations.locations })
     console.log(this)
+  }
+
+  initialLoctaions = (locations) => {
+    console.log(locations)
+    console.log(locations.response.groups[0].items)
+    this.setState({ locationsFromFourSquare: locations.response.groups[0].items })
   }
 
   updateSelectedLocation = (location) => {
@@ -67,25 +68,26 @@ class App extends Component {
     this.setState({
       showList: !this.state.showList
     })
-    
+
   }
 
 
   render() {
-    console.log(this.state.showInfoWindow)
     console.log(this.state.locationsFromFourSquare)
+    console.log(this.state.selectedLocation)
     return (
       <div className="App">
         <div className="head">
-        <image src="/snow-icon.png"></image>
+          <image src="/snow-icon.png"></image>
           <div className="hider" onClick={() => this.hideSearchContainer()}>隐藏/显示 </div>
         </div>
-        <div className={this.state.showList ? "searchContainer":"searchContainer hidden"}   >
+        <div className={this.state.showList ? "searchContainer" : "searchContainer hidden"}   >
           <SearchContainer
             locations={this.state.locations}
             onLocationSelected={this.updateSelectedLocation}
             selectedLocation={this.state.selectedLocation}
             updateKeyWord={this.updateKeyWord}
+            locationsFromFourSquare={this.state.locationsFromFourSquare}
           // activeLocation={this.ac}
           />
         </div>
@@ -95,6 +97,7 @@ class App extends Component {
             selectedLocation={this.state.selectedLocation}
             showInfoWindow={this.state.showInfoWindow}
             setActiveMarker={this.setActiveMarker}
+            locationsFromFourSquare={this.state.locationsFromFourSquare}
           />
         </div>
 

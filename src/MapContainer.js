@@ -40,16 +40,13 @@ export class MapContainer extends Component {
 
 
   state = {
-    showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: {},
   }
 
   setActiveMarker = (marker) => {
     console.log(marker)
-    this.setState({
-      activeMarker: marker,
-      showingInfoWindow: true
+    this.setState({ activeMarker: marker }, () => {
+      this.props.setActiveMarker(marker)
     })
   }
 
@@ -74,8 +71,9 @@ export class MapContainer extends Component {
   render() {
 
     console.log(this.state.activeMarker)
-    console.log(this.state.showingInfoWindow)
-    // console.log(this.props.selectedLocation, "------", this.props.locations)
+    console.log(this.props.selectedLocation, "------", this.props.locations)
+    // console.log(this.locationsFromFourSquare)
+    // console.log(this.locationsFromFourSquare.length)
 
     return (
       <Map
@@ -105,13 +103,14 @@ export class MapContainer extends Component {
             />
         ))}
 
-        <InfoWindow
+        {/* <InfoWindow
           marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
+          visible={this.props.showInfoWindow}>
           <div>
-            <h1>ddddddddddddddddddd</h1>
+            <h3>ddddddddddddddd</h3>
           </div>
-        </InfoWindow>
+
+        </InfoWindow> */}
 
       </Map>
     );
