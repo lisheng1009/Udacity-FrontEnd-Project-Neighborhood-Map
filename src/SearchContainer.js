@@ -11,7 +11,7 @@ class SearchContainer extends Component {
             <div>
                 <div className="filter-wrapper">
                     {/* <button className="hider" onClick={() => this.hideSearchContainer()}>隐藏</button> */}
-                    <h3 className="title">Welcome To Barcelona !!</h3>
+                    <h3 className="title" tabIndex="0">Welcome To Barcelona !!</h3>
                     <input
                         className="filter"
                         placeholder="filter a location"
@@ -20,10 +20,10 @@ class SearchContainer extends Component {
                         onChange={(event) => updateKeyWord(event.target.value)}
                     />
                 </div>
-                <ul className="location-list">
+                <ul className="location-list" tabIndex="0">
                     {locationsFromFourSquare.map((location) => (
                         <li key={location.venue.id} >
-                            <button className= { (location  ===  selectedLocation) ? "location selected" : "location" }  
+                            <button className= { (location  ===  selectedLocation) ? "location selected" : "location" }  tabIndex="0"
                             onClick={() => onLocationSelected(location)}>{location.venue.name}</button>
                         </li>
                     ))}

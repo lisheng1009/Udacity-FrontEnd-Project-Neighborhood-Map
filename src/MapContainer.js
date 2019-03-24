@@ -71,6 +71,8 @@ export class MapContainer extends Component {
           lat: 41.38879,
           lng: 2.15899
         }}
+        className="map"
+        tabIndex="0"
       >
         {this.props.locationsFromFourSquare.map(location => (
           this.props.selectedLocation === location ?
@@ -80,12 +82,14 @@ export class MapContainer extends Component {
               position={{ lat: location.venue.location.lat, lng: location.venue.location.lng }}
               onClick={this.setActiveMarker}
               animation={this.props.google.maps.Animation.BOUNCE}
+              tabIndex="1"
             /> :
             <Marker
               key={location.referralId}
               title={location.title}
               position={{ lat: location.venue.location.lat, lng: location.venue.location.lng }}
               onClick={this.setActiveMarker}
+              tabIndex="1"
             />
         ))}
 
