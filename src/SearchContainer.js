@@ -13,7 +13,7 @@ class SearchContainer extends Component {
                     {/* <button className="hider" onClick={() => this.hideSearchContainer()}>隐藏</button> */}
                     <input
                         className="filter"
-                        placeholder="filte a location"
+                        placeholder="filter a location"
                         aria-label="location-input"
                         type="text"
                         onChange={(event) => updateKeyWord(event.target.value)}

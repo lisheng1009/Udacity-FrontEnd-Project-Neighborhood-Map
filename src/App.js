@@ -6,6 +6,7 @@ import MapContainer from './MapContainer';
 import SearchContainer from './SearchContainer';
 import * as locations from './Locations'
 import escapeRegExp from 'escape-string-regexp'
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class App extends Component {
 
@@ -15,7 +16,8 @@ class App extends Component {
     showInfoWindow: false,
     showList: true,
     locationsFromFourSquare: [],
-    allLocations:[]
+    allLocations:[],
+    activeMarker:{}
   }
 
   componentDidMount() {
@@ -42,13 +44,22 @@ class App extends Component {
 
   //在搜索板块点击某位置的回调
   updateSelectedLocation = (location) => {
+    console.log(location)
+    console.log(location.venue.location.lat)
+    // debugger;
     this.setState({
       selectedLocation: location,
-      showInfoWindow: true
+      showInfoWindow: true,
+      // activeMarker: <Marker
+    //   position={
+    //     {lat: 40.7243,
+    //     lng: -74.0018}}
+    //   title="nnnnnnn"
+    // />
     })
   }
 
-  //过滤信息输入
+  //过滤地址
   updateKeyWord = (keyWord) => {
     if (keyWord === '') {
       this.setState({ locationsFromFourSquare: this.state.allLocations })
@@ -68,14 +79,11 @@ class App extends Component {
       if (this.state.locationsFromFourSquare[i].venue.location.lat === props.position.lat && this.state.locationsFromFourSquare[i].venue.location.lng === props.position.lng) {
         this.setState({
           selectedLocation : this.state.locationsFromFourSquare[i],
-          showInfoWindow: true
+          showInfoWindow: true,
+          activeMarker: marker
         })        
       }
     }
-
-    this.setState({
-      showInfoWindow : true
-    })
   }
 
   //点击隐藏或显示左边地址栏
@@ -93,7 +101,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="head">
-          <img src={hideImage} alt="to-hide" className="hideImage" />
+          {/* <img src={hideImage} alt="to-hide" className="hideImage" /> */}
           <div className="hider" onClick={() => this.hideSearchContainer()}>点击隐藏/显示地址栏 </div>
         </div>
         <div className={this.state.showList ? "searchContainer" : "searchContainer hidden"}   >
@@ -112,6 +120,7 @@ class App extends Component {
             showInfoWindow={this.state.showInfoWindow}
             setActiveMarker={this.setActiveMarker}
             locationsFromFourSquare={this.state.locationsFromFourSquare}
+            activeMarker={this.state.activeMarker}
           />
         </div>
 

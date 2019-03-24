@@ -70,7 +70,12 @@ export class MapContainer extends Component {
 
   render() {
 
-    console.log(this.props.selectedLocation)
+    if(this.props.selectedLocation.venue){
+      console.log(this.props.selectedLocation)
+      console.log(this.props.selectedLocation.venue.name)
+      console.log(this.props.showInfoWindow)
+    }
+    
     // console.log(this.props.selectedLocation, "------", this.props.locations)
     // console.log(this.props.locationsFromFourSquare)
     // console.log(this.locationsFromFourSquare.length)
@@ -101,14 +106,15 @@ export class MapContainer extends Component {
             />
         ))}
 
-        <InfoWindow
-          marker={this.state.activeMarker}
+        {this.props.selectedLocation.venue ? <InfoWindow
+          marker={this.props.activeMarker}
           visible={this.props.showInfoWindow}>
           <div>
-            <h3>ddddddddddddd</h3>
+            <h3>{this.props.selectedLocation.venue.name}</h3>
           </div>
 
-        </InfoWindow> 
+        </InfoWindow> : <div>no data</div>}
+        
 
       </Map>
     );

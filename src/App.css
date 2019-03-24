@@ -35,11 +35,12 @@
 .head{
   height: 50px;
   width: 100%;
-  background-color: yellow
+  background-color: black
 }
 
 .hider{
   margin-left: 0px;
+  color: white
 }
 
 .hideImage{
