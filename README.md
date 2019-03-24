@@ -1,3 +1,43 @@
+
+项目概述:
+
+NeighboorhoodMap是一个单页面地图应用，在此应用中西班牙城市巴塞罗那的10个推荐地点被显示在谷歌地图上.
+点击左侧地址栏, 右侧的红色地点标记会做出动画响应, 弹出信息窗口显示详细信息. 直接点击地点标记有同样效果.
+点击地图可以隐藏信息窗口.
+为了视觉需要, 特别是在移动端使用时, 可以点击左上角隐藏/显示左边的地址栏.
+
+本应用使用了FourSquare的API. 
+
+
+如何启动此项目:
+
+打开终端, 切换工作路径到此文件夹, 执行 npm install命令行安装node文件夹, 完成后, 执行npm start (或yarn start)命令行, 项目会自动在浏览器打开(推荐使用谷歌chrome浏览器). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

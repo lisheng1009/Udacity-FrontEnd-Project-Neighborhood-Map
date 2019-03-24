@@ -65,11 +65,11 @@ export class MapContainer extends Component {
     return (
       <Map
         google={this.props.google}
-        zoom={16}
+        zoom={14}
         onClick={()=>this.props.onMapClicked()}
         initialCenter={{
-          lat: 40.7243,
-          lng: -74.0018
+          lat: 41.38879,
+          lng: 2.15899
         }}
       >
         {this.props.locationsFromFourSquare.map(location => (
@@ -93,11 +93,12 @@ export class MapContainer extends Component {
           marker={this.props.activeMarker}
           visible={this.props.showInfoWindow}>
           <div>
-            <h2>{this.props.selectedLocation.venue.name}</h2>
-            <h4>{this.props.selectedLocation.venue.categories[0].name}</h4>
+            <h3>{this.props.selectedLocation.venue.name}</h3>
+            <h5>{this.props.selectedLocation.venue.categories[0].name}</h5>
             <div>{this.props.selectedLocation.venue.location.formattedAddress[0]}</div>
             <div>{this.props.selectedLocation.venue.location.formattedAddress[1]}</div>
             <div>{this.props.selectedLocation.venue.location.formattedAddress[2]}</div>
+            <div>---------Data From FourSquare</div>
           </div>
 
         </InfoWindow> : <div>loading data</div>}

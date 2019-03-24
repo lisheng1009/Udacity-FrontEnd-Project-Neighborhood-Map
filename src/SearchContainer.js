@@ -5,12 +5,13 @@ class SearchContainer extends Component {
 
     render() {
         console.log(this.props.selectedLocation)
-        const { locations, selectedLocation, updateKeyWord, onLocationSelected,locationsFromFourSquare } = this.props
+        const { selectedLocation, updateKeyWord, onLocationSelected,locationsFromFourSquare } = this.props
 
         return (
             <div>
                 <div className="filter-wrapper">
                     {/* <button className="hider" onClick={() => this.hideSearchContainer()}>隐藏</button> */}
+                    <h3 className="title">Welcome To Barcelona !!</h3>
                     <input
                         className="filter"
                         placeholder="filter a location"

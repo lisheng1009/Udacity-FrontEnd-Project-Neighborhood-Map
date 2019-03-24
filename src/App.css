@@ -39,15 +39,12 @@
 }
 
 .hider{
-  margin-left: 0px;
-  color: white
-}
-
-.hideImage{
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  margin-left: 0px;
+  /* position: absolute; */
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+  float: left;
 }
 
 .searchContainer{
@@ -55,9 +52,13 @@
 	color: #cccccc;
   width: 350px;
   /* padding: 0px; */
-  position: fixed;
+  position: absolute;
   background-color: black;
   height: 100%;
+}
+
+.location-list{
+  width: 100%;
 }
 
 .searchContainer.hidden{
@@ -65,13 +66,17 @@
 }
 
 .location {
-  /* margin-bottom: 1em; */
-  outline: none;
   background-color:rgba(12, 11, 11, 0.767);
-  /* border-color: #1860A6; */
+  border-color: black;
   color: white;
-  font-size: 1em;
+  font-size: 21px;
+  line-height: 40px;
+  text-decoration: underline;
   text-align: left;
+  width: 280px;
+  margin: 0px;
+  padding: 0px;
+  outline:none;
 }
 .location-list li {
   list-style: none;
@@ -100,12 +105,22 @@
 }
 
 .filter{
-  left: 200px;
+  padding-left: 20px;
+  margin-left: 45px;
+  /* margin-top: 10px; */
 }
 
-/*详情页适配移动端*/
-/* max-width      iPad: 768  iPhone Plus: 414  iphone6/7/8/X: 375 iphone5/SE: 320*/
-@media screen and (max-width: 768px) {
+.title{
+  margin-left: 45px;
+  margin-top: 30px;
+}
+
+/*适配移动端*/
+
+/*iPad*/
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px) {
 
   .searchContainer{
     width: 200px;
@@ -118,5 +133,62 @@
     left: 200px;
     right: 0px;
     top:50px;
+  }
+
+  .location {
+    background-color:rgba(12, 11, 11, 0.767);
+    border-color: black;
+    color: pink;
+    font-size: 21px;
+    line-height: 40px;
+    text-decoration: underline;
+    text-align: left;
+    width: 150px;
+    margin: 0px;
+    padding: 0px;
+    outline:none;
+  }
+}
+
+/*iPhone*/
+@media screen
+and (max-width : 414px){
+
+  .searchContainer{
+    width: 150px;
+  }
+
+  .mapContainer{
+    position: absolute;
+    height: 100%;
+    bottom: 0px;
+    left: 150px;
+    right: 0px;
+    top:50px;
+  }
+
+  .location {
+    background-color:rgba(12, 11, 11, 0.767);
+    border-color: black;
+    color: lightblue;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration: underline;
+    text-align: left;
+    width: 100px;
+    margin: 0px;
+    padding: 0px;
+    outline:none;
+  }
+
+  .filter{
+    margin-left: 25px;
+    width: 90px;
+  }
+  
+  .title{
+    margin-left: 35px;
+    margin-top: 0px;
+    font-size: 20px;
   }
 }
