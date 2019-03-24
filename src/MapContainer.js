@@ -50,24 +50,6 @@ export class MapContainer extends Component {
     })
   }
 
-
-  //选中某location
-  selectOneLocation(location) {
-    // console.log(location.selectedLocation)
-    // Map.map.panTo({
-    //   lat: 41.7413549,
-    //   lng: -72.9980244
-    // })
-  }
-
-
-
-  componentWillReceiveProps(location) {
-    this.selectOneLocation(location)
-  }
-
-
-
   render() {
 
     if(this.props.selectedLocation.venue){
@@ -84,6 +66,7 @@ export class MapContainer extends Component {
       <Map
         google={this.props.google}
         zoom={16}
+        onClick={()=>this.props.onMapClicked()}
         initialCenter={{
           lat: 40.7243,
           lng: -74.0018
@@ -110,10 +93,14 @@ export class MapContainer extends Component {
           marker={this.props.activeMarker}
           visible={this.props.showInfoWindow}>
           <div>
-            <h3>{this.props.selectedLocation.venue.name}</h3>
+            <h2>{this.props.selectedLocation.venue.name}</h2>
+            <h4>{this.props.selectedLocation.venue.categories[0].name}</h4>
+            <div>{this.props.selectedLocation.venue.location.formattedAddress[0]}</div>
+            <div>{this.props.selectedLocation.venue.location.formattedAddress[1]}</div>
+            <div>{this.props.selectedLocation.venue.location.formattedAddress[2]}</div>
           </div>
 
-        </InfoWindow> : <div>no data</div>}
+        </InfoWindow> : <div>loading data</div>}
         
 
       </Map>

@@ -4,14 +4,13 @@ import './App.css';
 
 import MapContainer from './MapContainer';
 import SearchContainer from './SearchContainer';
-import * as locations from './Locations'
 import escapeRegExp from 'escape-string-regexp'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class App extends Component {
 
   state = {
-    locations: [],
+    // locations: [],
     selectedLocation: {},
     showInfoWindow: false,
     showList: true,
@@ -22,7 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     //从fetchSquare获取位置数据
-    fetch('https://api.foursquare.com/v2/venues/explore?client_id=VWU4EEBHDN4RV1PS5MKGS3JCX0WYR2UWTVDYNU34PEB4WDLN&client_secret=HORQIXTRK34SLXT1EKPNHHXKK2GAUFLI22ILYRJLD4WLVPEK&v=20180323&limit=15&ll=40.7243,-74.0018')
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=VWU4EEBHDN4RV1PS5MKGS3JCX0WYR2UWTVDYNU34PEB4WDLN&client_secret=HORQIXTRK34SLXT1EKPNHHXKK2GAUFLI22ILYRJLD4WLVPEK&v=20180323&limit=10&ll=40.7243,-74.0018')
       .then((response) => {
         return response.json()
       }).then((this.initialLoctaions))
@@ -94,6 +93,12 @@ class App extends Component {
 
   }
 
+  //点击地图空白处 隐藏InfoWindow
+  onMapClicked = () => {
+    console.log("onMapClicked")
+    this.setState({showInfoWindow : false})
+  }
+
 
   render() {
     // console.log(this.state.locationsFromFourSquare)
@@ -121,6 +126,7 @@ class App extends Component {
             setActiveMarker={this.setActiveMarker}
             locationsFromFourSquare={this.state.locationsFromFourSquare}
             activeMarker={this.state.activeMarker}
+            onMapClicked={this.onMapClicked}
           />
         </div>
 
