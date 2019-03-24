@@ -28,8 +28,8 @@ class App extends Component {
         alert("糟糕, 没有正确加载地址API!", error)
       });
 
-    //开始用的假的地址数据
-    this.setState({ locations: locations.locations })
+    // //开始用的假的地址数据
+    // this.setState({ locations: locations.locations })
   }
 
   //处理位置数据, 更新到state
@@ -40,7 +40,7 @@ class App extends Component {
      })
   }
 
-  //更新选中位置
+  //在搜索板块点击某位置的回调
   updateSelectedLocation = (location) => {
     this.setState({
       selectedLocation: location,
@@ -59,10 +59,10 @@ class App extends Component {
     }
   }
 
-  //选中marker
+  //地图板块选中marker以后的回调
   setActiveMarker = (marker) => {
     console.log(this.state.locationsFromFourSquare)
-
+    //这里需要处理一下marker. 因为从地图点击marker传过来的是marker信息不是location信息, 需要比对经纬度查到是哪个location, 这样才能和左边地址栏进行联动
     for(let i = 0; i < this.state.locationsFromFourSquare.length; i++){
       if (this.state.locationsFromFourSquare[i].venue.location.lat === marker.position.lat && this.state.locationsFromFourSquare[i].venue.location.lng === marker.position.lng) {
         this.setState({
@@ -73,7 +73,7 @@ class App extends Component {
     }
   }
 
-  //隐藏左边地址栏
+  //点击隐藏或显示左边地址栏
   hideSearchContainer = () => {
     this.setState({
       showList: !this.state.showList
