@@ -1,63 +1,31 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
-import './MapContainer.css'
-
-// class MapContainer extends Component {
-
-// var map;
-// function initMap() {
-//     map = new google.maps.Map(document.getElementById('map'), {
-//         center: { lat: 40.7413569, lng: -73.9980244 },
-//         zoom: 13
-//     })
-//     var tribeca = { lat: 40.719526, lng: -74.0089934 }
-//     var marker = new google.maps.Marker({
-//         position: tribeca,
-//         map: map,
-//         title: 'this is tribeca!'
-//     })
-
-//     var infoWindow = new google.maps.InfoWindow({
-//         content: 'yyyyyyyyyyyyyyyyy'
-//     })
-
-//     marker.addListener('click',function(){
-//         infoWindow.open(map, marker)
-//     })
-// }
-
-
-// }
-
-// export default MapContainer
-//lat: -54.074374, lng:-68.546936
-
-
-
 
 
 export class MapContainer extends Component {
 
 
-  state = {
-    activeMarker: {},
-  }
+  // state = {
+  //   activeMarker: {},
+  // }
 
-  setActiveMarker = (props,marker) => {
+  setActiveMarker = (props, marker) => {
     console.log(marker)
-    this.setState({ activeMarker: marker }, () => {
-      this.props.setActiveMarker(props,marker)
-    })
+    // this.setState({ activeMarker: marker }, () => {
+    this.props.setActiveMarker(props, marker)
+    // })
   }
 
   render() {
 
-    if(this.props.selectedLocation.venue){
+    if (this.props.selectedLocation.venue) {
       console.log(this.props.selectedLocation)
-      console.log(this.props.selectedLocation.venue.name)
+      console.log(this.props.activeMarker)
       console.log(this.props.showInfoWindow)
+      // console.log(this.props.selectedLocation.venue.name)
+      // console.log(this.props.showInfoWindow)
     }
-    
+
     // console.log(this.props.selectedLocation, "------", this.props.locations)
     // console.log(this.props.locationsFromFourSquare)
     // console.log(this.locationsFromFourSquare.length)
@@ -66,7 +34,7 @@ export class MapContainer extends Component {
       <Map
         google={this.props.google}
         zoom={14}
-        onClick={()=>this.props.onMapClicked()}
+        onClick={() => this.props.onMapClicked()}
         initialCenter={{
           lat: 41.38879,
           lng: 2.15899
@@ -86,10 +54,18 @@ export class MapContainer extends Component {
             /> :
             <Marker
               key={location.referralId}
-              title={location.title}
+              title={location.venue.name}
               position={{ lat: location.venue.location.lat, lng: location.venue.location.lng }}
               onClick={this.setActiveMarker}
               tabIndex="1"
+            /**
+             * 问题1: 这里添加了焦点. 但是实际操作了一下, 聚焦到这里然后回车, 并没有触发onClick这个方法而是跳入了谷歌地图页面(应用外)
+             */
+
+            /**
+            * 问题2: 应用载入以后, 首次点击marker, 触发跳动动画但是不弹出InfoWindow, 再次点击此marker或其他marker就可以显示InfoWindow了
+            * 明明第一次也有值的,也出现了动画,不解.
+            */
             />
         ))}
 
@@ -106,8 +82,6 @@ export class MapContainer extends Component {
           </div>
 
         </InfoWindow> : <div>loading data</div>}
-        
-
       </Map>
     );
   }
