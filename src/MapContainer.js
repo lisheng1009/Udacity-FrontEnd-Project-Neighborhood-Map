@@ -43,10 +43,10 @@ export class MapContainer extends Component {
     activeMarker: {},
   }
 
-  setActiveMarker = (marker) => {
+  setActiveMarker = (props,marker) => {
     console.log(marker)
     this.setState({ activeMarker: marker }, () => {
-      this.props.setActiveMarker(marker)
+      this.props.setActiveMarker(props,marker)
     })
   }
 
@@ -100,15 +100,15 @@ export class MapContainer extends Component {
               onClick={this.setActiveMarker}
             />
         ))}
-{/* 
+
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.props.showInfoWindow}>
           <div>
-            <h3>ddddddddddddddd</h3>
+            <h3>ddddddddddddd</h3>
           </div>
 
-        </InfoWindow> */}
+        </InfoWindow> 
 
       </Map>
     );

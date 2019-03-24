@@ -60,17 +60,22 @@ class App extends Component {
   }
 
   //地图板块选中marker以后的回调
-  setActiveMarker = (marker) => {
-    console.log(this.state.locationsFromFourSquare)
+  setActiveMarker = (props,marker) => {
+    console.log(props)
+    console.log(marker)
     //这里需要处理一下marker. 因为从地图点击marker传过来的是marker信息不是location信息, 需要比对经纬度查到是哪个location, 这样才能和左边地址栏进行联动
     for(let i = 0; i < this.state.locationsFromFourSquare.length; i++){
-      if (this.state.locationsFromFourSquare[i].venue.location.lat === marker.position.lat && this.state.locationsFromFourSquare[i].venue.location.lng === marker.position.lng) {
+      if (this.state.locationsFromFourSquare[i].venue.location.lat === props.position.lat && this.state.locationsFromFourSquare[i].venue.location.lng === props.position.lng) {
         this.setState({
           selectedLocation : this.state.locationsFromFourSquare[i],
           showInfoWindow: true
         })        
       }
     }
+
+    this.setState({
+      showInfoWindow : true
+    })
   }
 
   //点击隐藏或显示左边地址栏
