@@ -57,7 +57,7 @@
   /* padding: 0px; */
   position: fixed;
   background-color: black;
-  height: 1000px;
+  height: 100%;
 }
 
 .searchContainer.hidden{
@@ -103,10 +103,20 @@
   left: 200px;
 }
 
-/* .searchContainer{
-  height: 1000px;
-  width: 300px;
-  background-color: #fbff00;
-  z-index: 1001;
-} */
+/*详情页适配移动端*/
+/* max-width      iPad: 768  iPhone Plus: 414  iphone6/7/8/X: 375 iphone5/SE: 320*/
+@media screen and (max-width: 768px) {
 
+  .searchContainer{
+    width: 200px;
+  }
+
+  .mapContainer{
+    position: absolute;
+    height: 100%;
+    bottom: 0px;
+    left: 200px;
+    right: 0px;
+    top:50px;
+  }
+}
