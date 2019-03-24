@@ -94,7 +94,7 @@ export class MapContainer extends Component {
               animation={this.props.google.maps.Animation.BOUNCE}
             /> :
             <Marker
-              key={location.title}
+              key={location.referralId}
               title={location.title}
               position={{ lat: location.venue.location.lat, lng: location.venue.location.lng }}
               onClick={this.setActiveMarker}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import hideImage from './snow-icon.png';
 import './App.css';
 
 import MapContainer from './MapContainer';
@@ -14,7 +14,8 @@ class App extends Component {
     selectedLocation: {},
     showInfoWindow: false,
     showList: true,
-    locationsFromFourSquare: []
+    locationsFromFourSquare: [],
+    allLocations:[]
   }
 
   componentDidMount() {
@@ -33,7 +34,10 @@ class App extends Component {
 
   //处理位置数据, 更新到state
   initialLoctaions = (locations) => {
-    this.setState({ locationsFromFourSquare: locations.response.groups[0].items })
+    this.setState({ 
+      locationsFromFourSquare: locations.response.groups[0].items,
+      allLocations:locations.response.groups[0].items
+     })
   }
 
   //更新选中位置
@@ -47,22 +51,26 @@ class App extends Component {
   //过滤信息输入
   updateKeyWord = (keyWord) => {
     if (keyWord === '') {
-      this.setState({ locations: locations.locations })
+      this.setState({ locationsFromFourSquare: this.state.allLocations })
     } else {
       const match = new RegExp(escapeRegExp(keyWord), 'i')
-      var resultLocations = this.state.locations.filter((location) => match.test(location.title))
-      this.setState({ locations: resultLocations })
+      var resultLocations = this.state.locationsFromFourSquare.filter((location) => match.test(location.venue.name))
+      this.setState({ locationsFromFourSquare: resultLocations })
     }
   }
 
   //选中marker
   setActiveMarker = (marker) => {
-    var location = { title: marker.name, location: marker.position }
-    console.log(location)
-    this.setState({
-      selectedLocation: location,
-      showInfoWindow: true
-    })
+    console.log(this.state.locationsFromFourSquare)
+
+    for(let i = 0; i < this.state.locationsFromFourSquare.length; i++){
+      if (this.state.locationsFromFourSquare[i].venue.location.lat === marker.position.lat && this.state.locationsFromFourSquare[i].venue.location.lng === marker.position.lng) {
+        this.setState({
+          selectedLocation : this.state.locationsFromFourSquare[i],
+          showInfoWindow: true
+        })        
+      }
+    }
   }
 
   //隐藏左边地址栏
@@ -75,12 +83,12 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.locationsFromFourSquare)
+    // console.log(this.state.locationsFromFourSquare)
     console.log(this.state.selectedLocation)
     return (
       <div className="App">
         <div className="head">
-          <image src="/snow-icon.png"></image>
+          <img src={hideImage} alt="to-hide" className="hideImage" />
           <div className="hider" onClick={() => this.hideSearchContainer()}>点击隐藏/显示地址栏 </div>
         </div>
         <div className={this.state.showList ? "searchContainer" : "searchContainer hidden"}   >
