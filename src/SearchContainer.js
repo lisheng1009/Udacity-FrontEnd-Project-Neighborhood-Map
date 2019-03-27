@@ -19,9 +19,9 @@ class SearchContainer extends Component {
                         onChange={(event) => updateKeyWord(event.target.value)}
                     />
                 </div>
-                <ul className="location-list" tabIndex="0">
+                <ul className="location-list">
                     {locationsFromFourSquare.map((location) => (
-                        <li key={location.venue.id} >
+                        <li key={location.venue.id}  tabIndex="0" aria-label="list-location">
                             <button className= { (location  ===  selectedLocation) ? "location selected" : "location" }  tabIndex="0"
                             onClick={() => onLocationSelected(location)}>{location.venue.name}</button>
                         </li>

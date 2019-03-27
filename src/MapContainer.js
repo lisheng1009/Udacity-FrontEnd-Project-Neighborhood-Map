@@ -2,6 +2,26 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
 
 
+class LoadingContainer extends Component {
+  state = {
+      content: '加载中...'
+  }
+  componentDidMount(){
+      this.timer = setTimeout(() => {
+          this.setState({content: '加载超时，请检查网络！'}); 
+      }, 1000);
+  }
+  componentWillUnmount(){
+      // 清除计时器
+      clearTimeout(this.timer);
+  }
+  render(){
+      return (
+          this.state.content
+      )
+  }
+}
+
 export class MapContainer extends Component {
 
 
@@ -51,6 +71,7 @@ export class MapContainer extends Component {
               onClick={this.setActiveMarker}
               animation={this.props.google.maps.Animation.BOUNCE}
               tabIndex="1"
+              aria-label="map-marker"
             /> :
             <Marker
               key={location.referralId}
@@ -58,6 +79,7 @@ export class MapContainer extends Component {
               position={{ lat: location.venue.location.lat, lng: location.venue.location.lng }}
               onClick={this.setActiveMarker}
               tabIndex="1"
+              aria-label="map-marker"
             /**
              * 问题1: 这里添加了焦点. 但是实际操作了一下, 聚焦到这里然后回车, 并没有触发onClick这个方法而是跳入了谷歌地图页面(应用外)
              */
@@ -88,5 +110,6 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ("AIzaSyBE3wylGyMIsU15yZjUpwk8iB2YJRCYrZU")
+  apiKey: ("AIzaSyBE3wylGyMIsU15yZjUpwk8iB2YJRCYrZU"),
+  LoadingContainer: LoadingContainer
 })(MapContainer)
