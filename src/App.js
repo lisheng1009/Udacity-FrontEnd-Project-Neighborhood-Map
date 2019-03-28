@@ -69,7 +69,7 @@ class App extends Component {
     // console.log(location.venue.location.lat)
     this.setState({
       selectedLocation: location,
-      showInfoWindow: true,
+      showInfoWindow: false,
       //   activeMarker: <Marker
       //   position={
       //     {lat: 40.7243,

@@ -4,21 +4,21 @@ import React, { Component } from 'react';
 
 class LoadingContainer extends Component {
   state = {
-      content: '加载中...'
+    content: '加载中...'
   }
-  componentDidMount(){
-      this.timer = setTimeout(() => {
-          this.setState({content: '加载超时，请检查网络！'}); 
-      }, 1000);
+  componentDidMount() {
+    this.timer = setTimeout(() => {
+      this.setState({ content: '加载超时，请检查网络！' });
+    }, 1000);
   }
-  componentWillUnmount(){
-      // 清除计时器
-      clearTimeout(this.timer);
+  componentWillUnmount() {
+    // 清除计时器
+    clearTimeout(this.timer);
   }
-  render(){
-      return (
-          this.state.content
-      )
+  render() {
+    return (
+      this.state.content
+    )
   }
 }
 
@@ -91,19 +91,20 @@ export class MapContainer extends Component {
             />
         ))}
 
-        {this.props.selectedLocation.venue ? <InfoWindow
+        <InfoWindow
           marker={this.props.activeMarker}
           visible={this.props.showInfoWindow}>
-          <div>
-            <h3>{this.props.selectedLocation.venue.name}</h3>
-            <h5>{this.props.selectedLocation.venue.categories[0].name}</h5>
-            <div>{this.props.selectedLocation.venue.location.formattedAddress[0]}</div>
-            <div>{this.props.selectedLocation.venue.location.formattedAddress[1]}</div>
-            <div>{this.props.selectedLocation.venue.location.formattedAddress[2]}</div>
-            <div>---------Data From FourSquare</div>
-          </div>
+          {this.props.selectedLocation.venue ?
+            <div>
+              <h3>{this.props.selectedLocation.venue.name}</h3>
+              <h5>{this.props.selectedLocation.venue.categories[0].name}</h5>
+              <div>{this.props.selectedLocation.venue.location.formattedAddress[0]}</div>
+              <div>{this.props.selectedLocation.venue.location.formattedAddress[1]}</div>
+              <div>{this.props.selectedLocation.venue.location.formattedAddress[2]}</div>
+              <div>---------Data From FourSquare</div>
+            </div> : <div>loading data</div>}
 
-        </InfoWindow> : <div>loading data</div>}
+        </InfoWindow>
       </Map>
     );
   }
